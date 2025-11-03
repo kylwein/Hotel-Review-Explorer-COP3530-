@@ -1,3 +1,0 @@
-C:/Users/thear/CLionProjects/COP3530_Hotel_Reviews_Project/cmake-build-debug/CMakeFiles/COP3530_Hotel_Reviews_Project.dir
-C:/Users/thear/CLionProjects/COP3530_Hotel_Reviews_Project/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/thear/CLionProjects/COP3530_Hotel_Reviews_Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
