@@ -6,6 +6,7 @@
 #include <ostream>
 #include <map>
 #include <limits>
+#include "HeapSort.h"
 using namespace std;
 
 struct DataForHeap {
@@ -51,7 +52,7 @@ int main() {
             avg_rating = stof(columns[3]);
             ind_rating = stof(columns[12]);
         }
-        catch (...) {
+        catch (invalid_argument&) {
             continue;
         }
 
@@ -77,12 +78,58 @@ int main() {
         }
     }
 
-    file.close();
+    HeapSort sorterAvg;
+    int max_heap_size_avg = 60000;
+    pair<float, string>* average_Heap = new pair<float, string>[max_heap_size_avg];
+    int average_Heap_size = 0;
+
+    // Insert average reviews into a max heap
+    for (const auto& entry : data) {
+        pair<float, string> temp = {entry.second.average_rating, entry.first};
+        sorterAvg.insertNodeMax(average_Heap, average_Heap_size, temp);
+    }
+    for (int i = 0; i < 3 && average_Heap_size > 0; ++i) {
+        pair<float, string> max = sorterAvg.extractMax(average_Heap, average_Heap_size);
+        cout << max.second << ", Average rating: " << max.first << endl;
+    }
+    delete[] average_Heap;
+
+
+    // Insert highest rated reviews for all hotels into a max heap
+    HeapSort sorterBest;
+    int max_heap_size_best = 60000;
+    pair<float, string>* best_Heap = new pair<float, string>[max_heap_size_best];
+    int best_Heap_size = 0;
 
     for (const auto& entry : data) {
-        fout << entry.first << " " << entry.second.address << ", " << entry.second.average_rating << ", " << entry.second.lowest_rating << ", " << entry.second.lowest_rating_review << ", " << entry.second.highest_rating << ", " << entry.second.highest_rating_review << endl;
+        pair<float, string> tempBest = {entry.second.highest_rating, entry.first};
+        sorterBest.insertNodeMax(best_Heap, best_Heap_size, tempBest);
     }
+    for (int i = 0; i < 3 && best_Heap_size > 0; ++i) {
+        pair<float, string> maxBest = sorterBest.extractMax(best_Heap, best_Heap_size);
+        cout << maxBest.second << ", Best ratings: " << maxBest.first << endl;
+    }
+    delete[] best_Heap;
 
-    fout.close();
+
+    // Insert lowest rated reviews for all hotels into a min heap
+    HeapSort sorterWorst;
+    int min_heap_size_worst = 60000;
+    pair<float, string>* worst_Heap = new pair<float, string>[min_heap_size_worst];
+    int worst_Heap_size = 0;
+
+    for (const auto& entry : data) {
+        pair<float, string> tempWorst = {entry.second.lowest_rating, entry.first};
+        sorterWorst.insertNodeMin(worst_Heap, worst_Heap_size, tempWorst);
+    }
+    for (int i = 0; i < 3 && worst_Heap_size > 0; ++i) {
+        pair<float, string> maxWorst = sorterWorst.extractMin(worst_Heap, worst_Heap_size);
+        cout << maxWorst.second << ", Best ratings: " << maxWorst.first << endl;
+    }
+    delete[] worst_Heap;
+
+
+    file.close();
+
     return 0;
 }
