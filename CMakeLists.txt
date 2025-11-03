@@ -7,5 +7,5 @@ add_executable(COP3530_Hotel_Reviews_Project
         main.cpp
         Trie.cpp
         Trie.h
-        # HeapSort.cpp   # uncomment this later 
+        HeapSort.cpp
 )
