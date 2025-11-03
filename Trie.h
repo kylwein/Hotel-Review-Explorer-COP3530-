@@ -21,7 +21,7 @@ class Trie {
 private:
     TrieNode* root;
 
-    // helper to get all words starting with a prefix
+    // helper to get all words starting with a prefix 
     void dfs(TrieNode* node, string prefix, vector<string>& results) {
         if (node->isEnd) results.push_back(prefix); // word complete
         for (auto& pair : node->children) {

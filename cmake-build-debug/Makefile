@@ -128,6 +128,30 @@ COP3530_Hotel_Reviews_Project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/build
 .PHONY : COP3530_Hotel_Reviews_Project/fast
 
+HeapSort.obj: HeapSort.cpp.obj
+.PHONY : HeapSort.obj
+
+# target to build an object file
+HeapSort.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj
+.PHONY : HeapSort.cpp.obj
+
+HeapSort.i: HeapSort.cpp.i
+.PHONY : HeapSort.i
+
+# target to preprocess a source file
+HeapSort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.i
+.PHONY : HeapSort.cpp.i
+
+HeapSort.s: HeapSort.cpp.s
+.PHONY : HeapSort.s
+
+# target to generate assembly for a file
+HeapSort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.s
+.PHONY : HeapSort.cpp.s
+
 Trie.obj: Trie.cpp.obj
 .PHONY : Trie.obj
 
@@ -185,6 +209,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... COP3530_Hotel_Reviews_Project
+	@echo ... HeapSort.obj
+	@echo ... HeapSort.i
+	@echo ... HeapSort.s
 	@echo ... Trie.obj
 	@echo ... Trie.i
 	@echo ... Trie.s
