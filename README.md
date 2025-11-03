@@ -21,9 +21,11 @@ This project uses **Dear ImGui** and **GLFW** for our GUI.
 Both dependencies are already included locally in the repository so you don't need to install anything.
 
 ### Step 1: Clone the project
+Can remove last line once we push to main
 ```bash
-git clone https://github.com/<your-repo-link-here>.git
+git clone https://github.com/kylwein/Hotel-Review-Explorer-COP3530-.git
 cd Hotel-Review-Explorer-COP3530-
+git checkout Implementing-GUI-+-Tries
 ```
 ### Step 2: Verify Folders
 Make sure your project root has these folders:
