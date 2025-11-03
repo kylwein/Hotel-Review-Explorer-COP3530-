@@ -177,16 +177,16 @@ int main() {
 
     file.close();
 
-    // GUI STUFF
+    // ---------------------------------------- ALL GUI STUFF AFTER THIS ------------------------------------------
 
     if (!glfwInit()) {
-        cerr << "Failed to initialize GLFW" << endl;
+        cerr << "Error initializing GLFW" << endl;
         return -1;
     }
 
     GLFWwindow* window = glfwCreateWindow(900, 700, "Hotel Review Explorer", nullptr, nullptr);
     if (window == nullptr) {
-        cerr << "Failed to create GLFW window" << endl;
+        cerr << "Error creating window" << endl;
         glfwTerminate();
         return -1;
     }
@@ -345,7 +345,7 @@ int main() {
         glfwSwapBuffers(window);
     }
 
-// === CLEANUP ===
+// close everything
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
