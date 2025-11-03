@@ -69,6 +69,7 @@ include CMakeFiles/COP3530_Hotel_Reviews_Project.dir/progress.make
 include CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
 
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/main.cpp
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj"
@@ -83,6 +84,7 @@ CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.s: cmake_force
 	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\main.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\main.cpp.s
 
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/Trie.cpp
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj"
@@ -97,6 +99,7 @@ CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.s: cmake_force
 	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\Trie.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\Trie.cpp.s
 
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/HeapSort.cpp
 CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj"
@@ -110,11 +113,107 @@ CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.s"
 	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\HeapSort.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\HeapSort.cpp.s
 
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui.cpp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj -MF CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui.cpp.obj.d -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui.cpp.obj -c C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui.cpp
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.i"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui.cpp > CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui.cpp.i
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.s"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui.cpp.s
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_draw.cpp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj -MF CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_draw.cpp.obj.d -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_draw.cpp.obj -c C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_draw.cpp
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.i"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_draw.cpp > CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_draw.cpp.i
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.s"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_draw.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_draw.cpp.s
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_tables.cpp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj -MF CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_tables.cpp.obj.d -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_tables.cpp.obj -c C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_tables.cpp
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.i"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_tables.cpp > CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_tables.cpp.i
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.s"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_tables.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_tables.cpp.s
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_widgets.cpp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj -MF CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_widgets.cpp.obj.d -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_widgets.cpp.obj -c C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_widgets.cpp
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.i"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_widgets.cpp > CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_widgets.cpp.i
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.s"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\imgui_widgets.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\imgui_widgets.cpp.s
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_glfw.cpp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj -MF CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_glfw.cpp.obj.d -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_glfw.cpp.obj -c C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\backends\imgui_impl_glfw.cpp
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.i"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\backends\imgui_impl_glfw.cpp > CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_glfw.cpp.i
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.s"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\backends\imgui_impl_glfw.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_glfw.cpp.s
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/flags.make
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/includes_CXX.rsp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_opengl3.cpp
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj -MF CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_opengl3.cpp.obj.d -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_opengl3.cpp.obj -c C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\backends\imgui_impl_opengl3.cpp
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.i"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\backends\imgui_impl_opengl3.cpp > CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_opengl3.cpp.i
+
+CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.s"
+	C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\imgui\backends\imgui_impl_opengl3.cpp -o CMakeFiles\COP3530_Hotel_Reviews_Project.dir\imgui\backends\imgui_impl_opengl3.cpp.s
+
 # Object files for target COP3530_Hotel_Reviews_Project
 COP3530_Hotel_Reviews_Project_OBJECTS = \
 "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj" \
 "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj" \
-"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj"
+"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj" \
+"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj" \
+"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj" \
+"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj" \
+"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj" \
+"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj" \
+"CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj"
 
 # External object files for target COP3530_Hotel_Reviews_Project
 COP3530_Hotel_Reviews_Project_EXTERNAL_OBJECTS =
@@ -122,11 +221,17 @@ COP3530_Hotel_Reviews_Project_EXTERNAL_OBJECTS =
 COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj
 COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj
 COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj
+COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj
+COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj
+COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj
+COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj
+COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj
+COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj
 COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/build.make
 COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/linkLibs.rsp
 COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/objects1.rsp
 COP3530_Hotel_Reviews_Project.exe: CMakeFiles/COP3530_Hotel_Reviews_Project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable COP3530_Hotel_Reviews_Project.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\19546\CLionProjects\Git\Hotel-Review-Explorer-COP3530-\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable COP3530_Hotel_Reviews_Project.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\COP3530_Hotel_Reviews_Project.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

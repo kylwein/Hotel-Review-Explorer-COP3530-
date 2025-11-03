@@ -15,6 +15,53 @@ It will also identify the most influential words, reviewer traits, and hotel att
 
 ---
 
+## 🛠️ Project Setup
+
+This project uses **Dear ImGui** and **GLFW** for our GUI. 
+Both dependencies are already included locally in the repository so you don't need to install anything.
+
+### Step 1: Clone the project
+```bash
+git clone https://github.com/<your-repo-link-here>.git
+cd Hotel-Review-Explorer-COP3530-
+```
+### Step 2: Verify Folders
+Make sure your project root has these folders:
+``` 
+Hotel-Review-Explorer-COP3530-
+├── imgui/
+├── glfw/
+├── main.cpp
+├── Trie.cpp
+├── HeapSort.cpp
+└── CMakeLists.txt
+```
+### Step 3: Dependency Setup (Optional)
+If you are missing dependencies run this in powershell:
+```powershell
+if (!(Test-Path "./imgui")) { git clone https://github.com/ocornut/imgui.git }
+if (!(Test-Path "./glfw")) {
+  $u="https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip"
+  Invoke-WebRequest $u -OutFile "g.zip"
+  Expand-Archive "g.zip" .
+  Rename-Item "glfw-3.4.bin.WIN64" "glfw"
+  Remove-Item "g.zip"
+}
+```
+
+### Step 4: Build & Run
+```
+1) Open the folder in IDE
+2) Reload CMake Project
+3) Build
+4) Run (the GUI will open automatically)
+
+
+```
+
+---
+
+
 ## 💡 Motivation
 Accurate review prediction gives hotels insight before feedback is even submitted.  
 Platforms like **Airbnb** and **Vrbo** have changed the landscape — hotels need to adapt to shifting customer sentiment and competition.  

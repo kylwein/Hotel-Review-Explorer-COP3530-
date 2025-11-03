@@ -24,6 +24,9 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui"/>
+					<Add directory="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends"/>
+					<Add directory="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/glfw/include"/>
 					<Add directory="C:/Downloads/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
 					<Add directory="C:/Downloads/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/Downloads/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
@@ -45,6 +48,9 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui"/>
+					<Add directory="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends"/>
+					<Add directory="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/glfw/include"/>
 					<Add directory="C:/Downloads/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
 					<Add directory="C:/Downloads/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/Downloads/x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
@@ -90,6 +96,33 @@
 			<Option target="COP3530_Hotel_Reviews_Project"/>
 		</Unit>
 		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/Trie.h">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_glfw.cpp">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_glfw.h">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_opengl3.cpp">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_opengl3.h">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui.cpp">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui.h">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_draw.cpp">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_tables.cpp">
+			<Option target="COP3530_Hotel_Reviews_Project"/>
+		</Unit>
+		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_widgets.cpp">
 			<Option target="COP3530_Hotel_Reviews_Project"/>
 		</Unit>
 		<Unit filename="C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/main.cpp">

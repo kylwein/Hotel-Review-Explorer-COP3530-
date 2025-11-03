@@ -11,6 +11,13 @@
 #include "Trie.h"
 using namespace std;
 
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include <GLFW/glfw3.h>
+#include <stdio.h>
+
+
 struct DataForHeap {
     string address;
     float average_rating;
@@ -145,7 +152,7 @@ int main() {
     for (const auto &entry : data) {
         trie.insert(entry.first);
     }
-
+    /* COMMENTED FOR GUI TESTING
     cout << "\nHotel Search\n";
     string prefix;
     while (true) {
@@ -166,7 +173,188 @@ int main() {
             }
         }
     }
+     */
 
     file.close();
+
+    // GUI STUFF
+
+    if (!glfwInit()) {
+        cerr << "Failed to initialize GLFW" << endl;
+        return -1;
+    }
+
+    GLFWwindow* window = glfwCreateWindow(900, 700, "Hotel Review Explorer", nullptr, nullptr);
+    if (window == nullptr) {
+        cerr << "Failed to create GLFW window" << endl;
+        glfwTerminate();
+        return -1;
+    }
+    glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
+
+// Setup ImGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 130");
+
+// GUI variables
+    char searchBuf[128] = "";
+    vector<string> guiResults;
+    string selectedHotel = "";
+
+// Prepare top 10 from heaps
+    vector<pair<float, string>> topAvg;
+    vector<pair<float, string>> topHigh;
+    vector<pair<float, string>> topLow;
+
+    {
+        // rebuild heaps quickly
+        HeapSort sorterAvg;
+        int size = 0;
+        pair<float, string>* heap = new pair<float, string>[data.size() + 1];
+        for (auto& e : data) sorterAvg.insertNodeMax(heap, size, {e.second.average_rating, e.first});
+        for (int i = 0; i < 10 && size > 0; i++) topAvg.push_back(sorterAvg.extractMax(heap, size));
+        delete[] heap;
+
+        HeapSort sorterBest;
+        size = 0;
+        heap = new pair<float, string>[data.size() + 1];
+        for (auto& e : data) sorterBest.insertNodeMax(heap, size, {e.second.highest_rating, e.first});
+        for (int i = 0; i < 10 && size > 0; i++) topHigh.push_back(sorterBest.extractMax(heap, size));
+        delete[] heap;
+
+        HeapSort sorterWorst;
+        size = 0;
+        heap = new pair<float, string>[data.size() + 1];
+        for (auto& e : data) sorterWorst.insertNodeMin(heap, size, {e.second.lowest_rating, e.first});
+        for (int i = 0; i < 10 && size > 0; i++) topLow.push_back(sorterWorst.extractMin(heap, size));
+        delete[] heap;
+    }
+
+// === MAIN GUI LOOP ===
+    while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        ImGui::Begin("Hotel Review Explorer");
+        ImGui::SetWindowSize(ImVec2(850, 650), ImGuiCond_Once);
+        ImGui::Text("Welcome! Search for a hotel or browse rankings.");
+        ImGui::Separator();
+
+        // Tabs: Search | Top Avg | Top Highest | Top Lowest
+        if (ImGui::BeginTabBar("HotelTabs")) {
+
+            // SEARCH TAB
+            if (ImGui::BeginTabItem("Search")) {
+                ImGui::InputText("##searchBar", searchBuf, IM_ARRAYSIZE(searchBuf));
+                ImGui::SameLine();
+                if (ImGui::Button("Search")) {
+                    string query(searchBuf);
+                    transform(query.begin(), query.end(), query.begin(), ::tolower);
+                    guiResults = trie.autocomplete(query);
+                }
+
+                ImGui::Separator();
+                if (!guiResults.empty()) {
+                    ImGui::Text("Top matches:");
+                    for (int i = 0; i < std::min((int)guiResults.size(), 10); ++i) {
+                        if (ImGui::Selectable(guiResults[i].c_str(), selectedHotel == guiResults[i])) {
+                            selectedHotel = guiResults[i];
+                        }
+                    }
+                } else {
+                    ImGui::TextDisabled("No matches yet. Type something and click Search.");
+                }
+                ImGui::EndTabItem();
+            }
+
+            // TOP AVG TAB
+            if (ImGui::BeginTabItem("Top Avg Rated")) {
+                ImGui::Text("Top 10 Hotels by Average Rating:");
+                for (auto& p : topAvg) {
+                    string label = p.second + " (" + to_string(p.first).substr(0, 4) + ")";
+                    if (ImGui::Selectable(label.c_str(), selectedHotel == p.second))
+                        selectedHotel = p.second;
+                }
+                ImGui::EndTabItem();
+            }
+
+            // TOP HIGHEST TAB
+            if (ImGui::BeginTabItem("Top Highest Rated")) {
+                ImGui::Text("Top 10 Highest Ratings:");
+                for (auto& p : topHigh) {
+                    string label = p.second + " (" + to_string(p.first).substr(0, 4) + ")";
+                    if (ImGui::Selectable(label.c_str(), selectedHotel == p.second))
+                        selectedHotel = p.second;
+                }
+                ImGui::EndTabItem();
+            }
+
+            // TOP LOWEST TAB
+            if (ImGui::BeginTabItem("Top Lowest Rated")) {
+                ImGui::Text("Bottom 10 Hotels (Lowest Ratings):");
+                for (auto& p : topLow) {
+                    string label = p.second + " (" + to_string(p.first).substr(0, 4) + ")";
+                    if (ImGui::Selectable(label.c_str(), selectedHotel == p.second))
+                        selectedHotel = p.second;
+                }
+                ImGui::EndTabItem();
+            }
+
+            ImGui::EndTabBar();
+        }
+
+        ImGui::Separator();
+
+        // DETAILS PANEL
+        if (!selectedHotel.empty()) {
+            auto it = data.find(selectedHotel);
+            if (it != data.end()) {
+                ImGui::Text("Hotel Details");
+                ImGui::Separator();
+                ImGui::Text("Name: %s", selectedHotel.c_str());
+                ImGui::TextWrapped("Address: %s", it->second.address.c_str());
+                ImGui::Text("Average Rating: %.2f", it->second.average_rating);
+                ImGui::Text("Highest Rating: %.2f", it->second.highest_rating);
+                ImGui::Text("Lowest Rating: %.2f", it->second.lowest_rating);
+                ImGui::Separator();
+                ImGui::TextWrapped("Top Review:\n%s", it->second.highest_rating_review.c_str());
+                ImGui::Separator();
+                ImGui::TextWrapped("Lowest Review:\n%s", it->second.lowest_rating_review.c_str());
+            } else {
+                ImGui::TextDisabled("No details found for this hotel.");
+            }
+        }
+
+        ImGui::End();
+
+        // Render
+        ImGui::Render();
+        int display_w, display_h;
+        glfwGetFramebufferSize(window, &display_w, &display_h);
+        glViewport(0, 0, display_w, display_h);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        glfwSwapBuffers(window);
+    }
+
+// === CLEANUP ===
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+    glfwDestroyWindow(window);
+    glfwTerminate();
+
+
+
+
     return 0;
 }
+

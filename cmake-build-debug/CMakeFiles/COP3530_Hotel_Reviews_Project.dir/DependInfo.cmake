@@ -10,6 +10,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/HeapSort.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj.d"
   "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/Trie.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj.d"
+  "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_glfw.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj.d"
+  "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/backends/imgui_impl_opengl3.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj.d"
+  "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui.cpp.obj.d"
+  "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_draw.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_draw.cpp.obj.d"
+  "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_tables.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_tables.cpp.obj.d"
+  "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/imgui/imgui_widgets.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/imgui_widgets.cpp.obj.d"
   "C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/main.cpp" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj" "gcc" "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/main.cpp.obj.d"
   )
 

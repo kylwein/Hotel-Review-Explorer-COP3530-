@@ -9,5 +9,5 @@ CMake Deprecation Warning:
 
 
 -- Configuring done (0.1s)
--- Generating done (0.0s)
+-- Generating done (0.1s)
 -- Build files have been written to: C:/Users/19546/CLionProjects/Git/Hotel-Review-Explorer-COP3530-/cmake-build-debug
