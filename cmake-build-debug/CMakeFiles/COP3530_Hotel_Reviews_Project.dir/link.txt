@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir/objects.a
+C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\ar.exe qc CMakeFiles\COP3530_Hotel_Reviews_Project.dir/objects.a @CMakeFiles\COP3530_Hotel_Reviews_Project.dir\objects1.rsp
+C:\Downloads\x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0\mingw64\bin\c++.exe -g -Wl,--whole-archive CMakeFiles\COP3530_Hotel_Reviews_Project.dir/objects.a -Wl,--no-whole-archive -o COP3530_Hotel_Reviews_Project.exe -Wl,--out-implib,libCOP3530_Hotel_Reviews_Project.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\COP3530_Hotel_Reviews_Project.dir\linkLibs.rsp
