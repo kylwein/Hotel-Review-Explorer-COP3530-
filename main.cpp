@@ -101,8 +101,8 @@ int main() {
         pair<float, string> temp = {entry.second.average_rating, entry.first};
         sorterAvg.insertNodeMax(average_Heap, average_Heap_size, temp);
     }
-    cout << "\nTop 3 Hotels by Average Rating:\n";
-    for (int i = 0; i < 3 && average_Heap_size > 0; ++i) {
+    cout << "\nTop 10 Hotels by Average Rating:\n";
+    for (int i = 0; i < 10 && average_Heap_size > 0; ++i) {
         pair<float, string> max = sorterAvg.extractMax(average_Heap, average_Heap_size);
         cout << " - " << max.second << ", Average rating: " << max.first << endl;
     }
@@ -117,8 +117,8 @@ int main() {
         pair<float, string> tempBest = {entry.second.highest_rating, entry.first};
         sorterBest.insertNodeMax(best_Heap, best_Heap_size, tempBest);
     }
-    cout << "\nTop 3 Hotels by Highest Rating:\n";
-    for (int i = 0; i < 3 && best_Heap_size > 0; ++i) {
+    cout << "\nTop 10 Hotels by Highest Rating:\n";
+    for (int i = 0; i < 10 && best_Heap_size > 0; ++i) {
         pair<float, string> maxBest = sorterBest.extractMax(best_Heap, best_Heap_size);
         cout << " - " << maxBest.second << ", Best rating: " << maxBest.first << endl;
     }
@@ -133,8 +133,8 @@ int main() {
         pair<float, string> tempWorst = {entry.second.lowest_rating, entry.first};
         sorterWorst.insertNodeMin(worst_Heap, worst_Heap_size, tempWorst);
     }
-    cout << "\nBottom 3 Hotels by Lowest Rating:\n";
-    for (int i = 0; i < 3 && worst_Heap_size > 0; ++i) {
+    cout << "\nBottom 10 Hotels by Lowest Rating:\n";
+    for (int i = 0; i < 10 && worst_Heap_size > 0; ++i) {
         pair<float, string> minWorst = sorterWorst.extractMin(worst_Heap, worst_Heap_size);
         cout << " - " << minWorst.second << ", Worst rating: " << minWorst.first << endl;
     }
@@ -162,7 +162,93 @@ int main() {
             sort(matches.begin(), matches.end());
             cout << "Top matches (" << min((int)matches.size(), 5) << "):\n";
             for (int i = 0; i < min((int)matches.size(), 5); i++) {
-                cout << " - " << matches[i] << endl;
+                cout << to_string(i + 1) << ". " << matches[i] << endl; // Changed to show the number for further heap investigation below
+            }
+
+            // Get top 10 reviews (positive and negative) for individual hotels
+            while (true) {
+                cout << "\nWhich hotel would you like to look at further? " << endl;
+                cout << "Type the number that matches with the hotel (or 'exit' to quit): " << endl;
+                string numberStr;
+                int number;
+                getline(cin, numberStr);
+                if (numberStr == "exit") {
+                    break;
+                }
+
+                try {
+                    number = stoi(numberStr);
+                } catch (invalid_argument&) {
+                    cout << "Invalid input. Please enter a number within range.\n";
+                    continue;
+                }
+
+                if (number <= 0 || number > matches.size()) {
+                    cout << "Invalid input. Please choose a number within the previously listed range." << endl;
+                    continue;
+                }
+
+                string selectedHotel = matches[number - 1];
+                cout << "You have selected " << selectedHotel << ". Is this correct? (Yes/No): ";
+                string verifySelection;
+                getline(cin, verifySelection);
+                if (verifySelection == "yes") {
+                    cout << "Select what you would like to look at: " << endl;
+                    cout << "1. Top 10 positive reviews" << endl;
+                    cout << "2. Top 10 negative reviews" << endl;
+
+                    string selectedOption;
+                    getline(cin, selectedOption);
+                    if (selectedOption == "1") {
+                        auto it = data.find(selectedHotel);
+                        if (it != data.end()) {
+                            HeapSort sorterBestReviews;
+                            int heap_size = 0;
+                            int heap_size_max_best_reviews = 60000;
+                            pair<float, string> *bestReviewsHeap = new pair<float, string>[heap_size_max_best_reviews];
+
+                            for (const auto &entry : data) {
+                                pair<float, string> tempBestReviews = {entry.second.highest_rating, entry.second.highest_rating_review};
+                                sorterBestReviews.insertNodeMax(bestReviewsHeap, heap_size, tempBestReviews);
+                            }
+
+                            cout << "Top 10 positive reviews for " << selectedHotel << ": " << endl;
+                            for (int i = 0; i < 10 && heap_size_max_best_reviews > 0; ++i) {
+                                pair<float, string> maxBestReviews = sorterBestReviews.extractMax(bestReviewsHeap, heap_size_max_best_reviews);
+                                cout << "(" << maxBestReviews.first << ") " << maxBestReviews.second << endl;
+                            }
+                            delete[] bestReviewsHeap;
+                        }
+                    }
+                    else if (selectedOption == "2") {
+                        auto it = data.find(selectedHotel);
+                        if (it != data.end()) {
+                            HeapSort sorterWorstReviews;
+                            int heap_size = 0;
+                            int heap_size_max_worst_reviews = 60000;
+                            pair<float, string> *worstReviewsHeap = new pair<float, string>[heap_size_max_worst_reviews];
+
+                            for (const auto &entry : data) {
+                                pair<float, string> tempWorstReviews = {entry.second.highest_rating, entry.second.highest_rating_review};
+                                sorterWorstReviews.insertNodeMin(worstReviewsHeap, heap_size, tempWorstReviews);
+                            }
+
+                            cout << "Top 10 positive reviews for " << selectedHotel << ": " << endl;
+                            for (int i = 0; i < 10 && heap_size_max_worst_reviews > 0; ++i) {
+                                pair<float, string> maxWorstReviews = sorterWorstReviews.extractMin(worstReviewsHeap, heap_size_max_worst_reviews);
+                                cout << "(" << maxWorstReviews.first << ") " << maxWorstReviews.second << endl;
+                            }
+                            delete[] worstReviewsHeap;
+                        }
+                    }
+                }
+                else if (verifySelection == "no") {
+                    cout << "Top matches (" << min((int)matches.size(), 5) << "):\n";
+                    for (int i = 0; i < min((int)matches.size(), 5); i++) {
+                        cout << to_string(i + 1) << ". " << matches[i] << endl;
+                    }
+                    continue;
+                }
             }
         }
     }
