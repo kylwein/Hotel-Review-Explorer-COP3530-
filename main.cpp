@@ -1,258 +1,299 @@
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <sstream>
+#include <string>
 #include <vector>
-#include <ostream>
 #include <map>
-#include <limits>
 #include <algorithm>
-#include "HeapSort.h"
+#include <cctype>
+#include <random>
 #include "Trie.h"
+#include "HeapSort.h"
+
+#include "imgui.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
+#include <GLFW/glfw3.h>
+
 using namespace std;
 
-struct DataForHeap {
+struct HotelData {
+    string display_name;
     string address;
-    float average_rating;
-    float lowest_rating;
-    float highest_rating;
-    string lowest_rating_review;
+    int review_count = 0;
+    float average_rating = 0.0f;
+    float highest_rating = 0.0f;
+    float lowest_rating = 10.0f;
     string highest_rating_review;
+    string lowest_rating_review;
 };
 
+static vector<string> splitCSVLine(const string& line) {
+    vector<string> out;
+    string cur;
+    bool in_quotes = false;
+    for (size_t i = 0; i < line.size(); ++i) {
+        char ch = line[i];
+        if (ch == '"') {
+            if (in_quotes && i + 1 < line.size() && line[i + 1] == '"') { cur.push_back('"'); ++i; }
+            else { in_quotes = !in_quotes; }
+        } else if (ch == ',' && !in_quotes) {
+            out.push_back(cur);
+            cur.clear();
+        } else {
+            cur.push_back(ch);
+        }
+    }
+    out.push_back(cur);
+    return out;
+}
+
+static inline string to_lower_copy(string s) {
+    transform(s.begin(), s.end(), s.begin(),
+              [](unsigned char c){ return static_cast<char>(tolower(c)); });
+    return s;
+}
+
+inline void ApplyDarkAesthetic() {
+    ImGuiStyle& style = ImGui::GetStyle();
+    ImVec4* colors = style.Colors;
+
+    colors[ImGuiCol_WindowBg]      = ImVec4(0.10f, 0.12f, 0.16f, 1.00f);
+    colors[ImGuiCol_Text]          = ImVec4(0.90f, 0.92f, 0.95f, 1.00f);
+    colors[ImGuiCol_Button]        = ImVec4(0.20f, 0.55f, 0.70f, 1.00f);
+    colors[ImGuiCol_ButtonHovered] = ImVec4(0.30f, 0.65f, 0.80f, 1.00f);
+    colors[ImGuiCol_ButtonActive]  = ImVec4(0.25f, 0.50f, 0.65f, 1.00f);
+    colors[ImGuiCol_Header]        = ImVec4(0.22f, 0.45f, 0.55f, 1.00f);
+    colors[ImGuiCol_HeaderHovered] = ImVec4(0.28f, 0.55f, 0.65f, 1.00f);
+    colors[ImGuiCol_ChildBg]       = ImVec4(0.12f, 0.14f, 0.18f, 1.00f);
+
+    style.FrameRounding = 10.0f;
+    style.WindowRounding = 14.0f;
+    style.ItemSpacing = ImVec2(10, 8);
+    style.WindowPadding = ImVec2(16, 12);
+}
+
+inline void ApplyLightAesthetic() {
+    ImGuiStyle& style = ImGui::GetStyle();
+    ImVec4* colors = style.Colors;
+
+    colors[ImGuiCol_WindowBg]      = ImVec4(0.97f, 0.97f, 0.96f, 1.00f);
+    colors[ImGuiCol_ChildBg]       = ImVec4(0.99f, 0.99f, 0.98f, 1.00f);
+
+    colors[ImGuiCol_Text]          = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+    colors[ImGuiCol_TextDisabled]  = ImVec4(0.20f, 0.20f, 0.20f, 1.00f);
+
+    colors[ImGuiCol_Button]        = ImVec4(0.24f, 0.50f, 0.78f, 1.00f);
+    colors[ImGuiCol_ButtonHovered] = ImVec4(0.32f, 0.60f, 0.85f, 1.00f);
+    colors[ImGuiCol_ButtonActive]  = ImVec4(0.20f, 0.45f, 0.70f, 1.00f);
+
+    colors[ImGuiCol_Header]        = ImVec4(0.30f, 0.60f, 0.80f, 1.00f);
+    colors[ImGuiCol_HeaderHovered] = ImVec4(0.25f, 0.55f, 0.75f, 1.00f);
+    colors[ImGuiCol_HeaderActive]  = ImVec4(0.20f, 0.45f, 0.70f, 1.00f);
+
+    colors[ImGuiCol_FrameBg]       = ImVec4(0.95f, 0.95f, 0.94f, 1.00f);
+    colors[ImGuiCol_FrameBgHovered]= ImVec4(0.90f, 0.92f, 0.94f, 1.00f);
+    colors[ImGuiCol_Border]        = ImVec4(0.70f, 0.73f, 0.77f, 1.00f);
+
+    style.FrameRounding = 10.0f;
+    style.WindowRounding = 14.0f;
+    style.ItemSpacing = ImVec2(10, 8);
+    style.WindowPadding = ImVec2(18, 12);
+    style.ChildRounding = 10.0f;
+}
+
+static ImVec4 scoreColor(float score) {
+    if (score >= 9.0f) return ImVec4(0.35f, 0.85f, 0.30f, 1.0f);
+    if (score >= 8.0f) return ImVec4(0.95f, 0.82f, 0.25f, 1.0f);
+    if (score >= 6.0f) return ImVec4(0.95f, 0.60f, 0.25f, 1.0f);
+    return ImVec4(0.90f, 0.32f, 0.30f, 1.0f);
+}
+
 int main() {
-    ifstream file("../Hotel_Reviews.csv");  // changed to unify path
-    ofstream fout("Concise_Hotel_Reviews.csv", ios::out | ios::app);
-
+    ifstream file("../Hotel_Reviews.csv");//change to your system
     if (!file.is_open()) {
-        cout << "File could not be opened" << endl;
-        return 1;
+        cerr << " Error: Could not open ../Hotel_Reviews.csv" << endl;
+        return -1;
     }
 
+    ofstream fout("Concise_Hotel_Reviews.csv", ios::out | ios::app);
+    if (!fout.is_open()) {
+        cerr << " Error: Could not create Concise_Hotel_Reviews.csv" << endl;
+        return -1;
+    }
+
+    unsigned char bom[3] = {0};
+    file.read(reinterpret_cast<char*>(bom), 3);
+    if (!(bom[0] == 0xEF && bom[1] == 0xBB && bom[2] == 0xBF)) file.seekg(0);
+
+    string header;
+    getline(file, header);
+    cout << "Header columns: " << header << endl;
+
+    map<string, HotelData> hotels;
     string line;
-    map<string, DataForHeap> data;
-
     while (getline(file, line)) {
-        stringstream ss(line);
-        vector<string> columns;
-        string cell;
+        if (line.empty()) continue;
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        vector<string> cols = splitCSVLine(line);
+        if (cols.size() < 13) continue;
 
-        while (getline(ss, cell, ',')) {
-            columns.push_back(cell);
-        }
+        string hotel_name = cols[4];
+        if (hotel_name.empty()) continue;
 
-        // skip malformed rows
-        if (columns.size() < 13) continue;
+        string key = to_lower_copy(hotel_name);
+        string avg_str = cols[3];
+        string reviewer_score_str = cols[12];
 
-        string hotel_name = columns[4];
-        string hotel_address = columns[0];
-        float avg_rating;
-        float ind_rating;
-        string low_rating_review = columns[6];
-        string high_rating_review = columns[9];
+        float avg = 0.0f, reviewer_score = 0.0f;
+        try { if (!avg_str.empty()) avg = stof(avg_str); } catch (...) {}
+        try { if (!reviewer_score_str.empty()) reviewer_score = stof(reviewer_score_str); } catch (...) {}
 
-        // normalize names for Trie consistency
-        auto trim = [](string &s) {
-            s.erase(0, s.find_first_not_of(" \t\n\r"));
-            s.erase(s.find_last_not_of(" \t\n\r") + 1);
-        };
-        transform(hotel_name.begin(), hotel_name.end(), hotel_name.begin(), ::tolower);
-        trim(hotel_name);
+        HotelData& h = hotels[key];
+        if (h.display_name.empty()) h.display_name = hotel_name;
+        h.review_count++;
+        if (reviewer_score > h.highest_rating) h.highest_rating = reviewer_score;
+        if (reviewer_score < h.lowest_rating) h.lowest_rating = reviewer_score;
+        if (h.average_rating <= 0.f && avg > 0.f) h.average_rating = avg;
 
-        if (hotel_name.empty() || hotel_name == "hotel_name") continue;
-
-        try {
-            avg_rating = stof(columns[3]);
-            ind_rating = stof(columns[12]);
-        } catch (invalid_argument &) {
-            continue;
-        }
-
-        if (data.find(hotel_name) == data.end()) {
-            DataForHeap heapData;
-            heapData.address = hotel_address;
-            heapData.average_rating = avg_rating;
-            heapData.lowest_rating = ind_rating;
-            heapData.lowest_rating_review = low_rating_review;
-            heapData.highest_rating = ind_rating;
-            heapData.highest_rating_review = high_rating_review;
-            data[hotel_name] = heapData;
-        } else {
-            if (ind_rating < data[hotel_name].lowest_rating) {
-                data[hotel_name].lowest_rating = ind_rating;
-                data[hotel_name].lowest_rating_review = low_rating_review;
-            }
-            if (ind_rating > data[hotel_name].highest_rating) {
-                data[hotel_name].highest_rating = ind_rating;
-                data[hotel_name].highest_rating_review = high_rating_review;
-            }
-        }
+        fout << hotel_name << "," << h.average_rating << "," << h.review_count << "\n";
     }
-
-    cout << "Loading Complete! Total unique hotels: " << data.size() << endl;
-
-    // HEAPSORT SECTION
-    HeapSort sorterAvg;
-    int max_heap_size_avg = 60000;
-    pair<float, string> *average_Heap = new pair<float, string>[max_heap_size_avg];
-    int average_Heap_size = 0;
-
-    for (const auto &entry : data) {
-        pair<float, string> temp = {entry.second.average_rating, entry.first};
-        sorterAvg.insertNodeMax(average_Heap, average_Heap_size, temp);
-    }
-    cout << "\nTop 10 Hotels by Average Rating:\n";
-    for (int i = 0; i < 10 && average_Heap_size > 0; ++i) {
-        pair<float, string> max = sorterAvg.extractMax(average_Heap, average_Heap_size);
-        cout << " - " << max.second << ", Average rating: " << max.first << endl;
-    }
-    delete[] average_Heap;
-
-    HeapSort sorterBest;
-    int max_heap_size_best = 60000;
-    pair<float, string> *best_Heap = new pair<float, string>[max_heap_size_best];
-    int best_Heap_size = 0;
-
-    for (const auto &entry : data) {
-        pair<float, string> tempBest = {entry.second.highest_rating, entry.first};
-        sorterBest.insertNodeMax(best_Heap, best_Heap_size, tempBest);
-    }
-    cout << "\nTop 10 Hotels by Highest Rating:\n";
-    for (int i = 0; i < 10 && best_Heap_size > 0; ++i) {
-        pair<float, string> maxBest = sorterBest.extractMax(best_Heap, best_Heap_size);
-        cout << " - " << maxBest.second << ", Best rating: " << maxBest.first << endl;
-    }
-    delete[] best_Heap;
-
-    HeapSort sorterWorst;
-    int min_heap_size_worst = 60000;
-    pair<float, string> *worst_Heap = new pair<float, string>[min_heap_size_worst];
-    int worst_Heap_size = 0;
-
-    for (const auto &entry : data) {
-        pair<float, string> tempWorst = {entry.second.lowest_rating, entry.first};
-        sorterWorst.insertNodeMin(worst_Heap, worst_Heap_size, tempWorst);
-    }
-    cout << "\nBottom 10 Hotels by Lowest Rating:\n";
-    for (int i = 0; i < 10 && worst_Heap_size > 0; ++i) {
-        pair<float, string> minWorst = sorterWorst.extractMin(worst_Heap, worst_Heap_size);
-        cout << " - " << minWorst.second << ", Worst rating: " << minWorst.first << endl;
-    }
-    delete[] worst_Heap;
-
-    // TRIE SECTION
-    Trie trie;
-    for (const auto &entry : data) {
-        trie.insert(entry.first);
-    }
-
-    cout << "\nHotel Search\n";
-    string prefix;
-    while (true) {
-        cout << "\nType a hotel name prefix (or 'exit' to quit): ";
-        getline(cin, prefix);
-        if (prefix == "exit") break;
-
-        transform(prefix.begin(), prefix.end(), prefix.begin(), ::tolower);
-        vector<string> matches = trie.autocomplete(prefix);
-
-        if (matches.empty()) {
-            cout << "No matches found.\n";
-        } else {
-            sort(matches.begin(), matches.end());
-            cout << "Top matches (" << min((int)matches.size(), 5) << "):\n";
-            for (int i = 0; i < min((int)matches.size(), 5); i++) {
-                cout << to_string(i + 1) << ". " << matches[i] << endl; // Changed to show the number for further heap investigation below
-            }
-
-            // Get top 10 reviews (positive and negative) for individual hotels
-            while (true) {
-                cout << "\nWhich hotel would you like to look at further? " << endl;
-                cout << "Type the number that matches with the hotel (or 'exit' to quit): " << endl;
-                string numberStr;
-                int number;
-                getline(cin, numberStr);
-                if (numberStr == "exit") {
-                    break;
-                }
-
-                try {
-                    number = stoi(numberStr);
-                } catch (invalid_argument&) {
-                    cout << "Invalid input. Please enter a number within range.\n";
-                    continue;
-                }
-
-                if (number <= 0 || number > matches.size()) {
-                    cout << "Invalid input. Please choose a number within the previously listed range." << endl;
-                    continue;
-                }
-
-                string selectedHotel = matches[number - 1];
-                cout << "You have selected " << selectedHotel << ". Is this correct? (Yes/No): ";
-                string verifySelection;
-                getline(cin, verifySelection);
-                if (verifySelection == "yes") {
-                    cout << "Select what you would like to look at: " << endl;
-                    cout << "1. Top 10 positive reviews" << endl;
-                    cout << "2. Top 10 negative reviews" << endl;
-
-                    string selectedOption;
-                    getline(cin, selectedOption);
-                    if (selectedOption == "1") {
-                        auto it = data.find(selectedHotel);
-                        if (it != data.end()) {
-                            HeapSort sorterBestReviews;
-                            int heap_size = 0;
-                            int heap_size_max_best_reviews = 60000;
-                            pair<float, string> *bestReviewsHeap = new pair<float, string>[heap_size_max_best_reviews];
-
-                            for (const auto &entry : data) {
-                                pair<float, string> tempBestReviews = {entry.second.highest_rating, entry.second.highest_rating_review};
-                                sorterBestReviews.insertNodeMax(bestReviewsHeap, heap_size, tempBestReviews);
-                            }
-
-                            cout << "Top 10 positive reviews for " << selectedHotel << ": " << endl;
-                            for (int i = 0; i < 10 && heap_size_max_best_reviews > 0; ++i) {
-                                pair<float, string> maxBestReviews = sorterBestReviews.extractMax(bestReviewsHeap, heap_size_max_best_reviews);
-                                cout << "(" << maxBestReviews.first << ") " << maxBestReviews.second << endl;
-                            }
-                            delete[] bestReviewsHeap;
-                        }
-                    }
-                    else if (selectedOption == "2") {
-                        auto it = data.find(selectedHotel);
-                        if (it != data.end()) {
-                            HeapSort sorterWorstReviews;
-                            int heap_size = 0;
-                            int heap_size_max_worst_reviews = 60000;
-                            pair<float, string> *worstReviewsHeap = new pair<float, string>[heap_size_max_worst_reviews];
-
-                            for (const auto &entry : data) {
-                                pair<float, string> tempWorstReviews = {entry.second.highest_rating, entry.second.highest_rating_review};
-                                sorterWorstReviews.insertNodeMin(worstReviewsHeap, heap_size, tempWorstReviews);
-                            }
-
-                            cout << "Top 10 positive reviews for " << selectedHotel << ": " << endl;
-                            for (int i = 0; i < 10 && heap_size_max_worst_reviews > 0; ++i) {
-                                pair<float, string> maxWorstReviews = sorterWorstReviews.extractMin(worstReviewsHeap, heap_size_max_worst_reviews);
-                                cout << "(" << maxWorstReviews.first << ") " << maxWorstReviews.second << endl;
-                            }
-                            delete[] worstReviewsHeap;
-                        }
-                    }
-                }
-                else if (verifySelection == "no") {
-                    cout << "Top matches (" << min((int)matches.size(), 5) << "):\n";
-                    for (int i = 0; i < min((int)matches.size(), 5); i++) {
-                        cout << to_string(i + 1) << ". " << matches[i] << endl;
-                    }
-                    continue;
-                }
-            }
-        }
-    }
-
     file.close();
+    fout.close();
+    cout << " Loaded " << hotels.size() << " unique hotels.\n";
+
+    if (!glfwInit()) return -1;
+    GLFWwindow* window = glfwCreateWindow(900, 700, "Hotel Review Explorer", nullptr, nullptr);
+    if (!window) { glfwTerminate(); return -1; }
+
+    const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    if (mode) glfwSetWindowPos(window, (mode->width - 900) / 2, (mode->height - 700) / 2);
+    glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
+
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init("#version 130");
+
+    bool darkMode = true;
+    ApplyDarkAesthetic();
+
+    static vector<string> searchResults;
+    char searchBuf[128] = "";
+
+    while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+        ImGui::SetNextWindowSize(ImVec2(850, 650), ImGuiCond_Once);
+        ImGui::Begin("Hotel Review Explorer", nullptr, ImGuiWindowFlags_NoCollapse);
+
+        ImVec4 titleColor = darkMode ? ImVec4(0.60f, 0.80f, 1.00f, 1.00f)
+                                     : ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+        ImGui::TextColored(titleColor, "Hotel Review Explorer");
+
+        ImGui::SameLine(ImGui::GetWindowWidth() - 180);
+        if (ImGui::Button(darkMode ? "Switch to Light Mode" : "Switch to Dark Mode", ImVec2(160, 28))) {
+            darkMode = !darkMode;
+            if (darkMode) ApplyDarkAesthetic(); else ApplyLightAesthetic();
+        }
+
+        ImGui::Separator();
+        ImGui::TextDisabled("Loaded: %d hotels", (int)hotels.size());
+        ImGui::Separator();
+
+        ImGui::InputTextWithHint("##search", "Enter hotel name...", searchBuf, IM_ARRAYSIZE(searchBuf));
+        ImGui::SameLine();
+        if (ImGui::Button("Search", ImVec2(100, 28))) {
+            string q = to_lower_copy(string(searchBuf));
+            searchResults.clear();
+            for (auto &kv : hotels)
+                if (kv.first.find(q) != string::npos)
+                    searchResults.push_back(kv.first);
+        }
+
+        ImGui::SameLine();
+        if (ImGui::Button("Top Rated", ImVec2(100, 28))) {
+            searchResults.clear();
+            vector<pair<string, float>> sorted;
+            for (auto &kv : hotels) sorted.push_back({kv.first, kv.second.average_rating});
+            sort(sorted.begin(), sorted.end(), [](auto &a, auto &b){ return a.second > b.second; });
+            for (int i = 0; i < 10 && i < (int)sorted.size(); ++i)
+                searchResults.push_back(sorted[i].first);
+        }
+
+        ImGui::SameLine();
+        if (ImGui::Button("Lowest Rated", ImVec2(120, 28))) {
+            searchResults.clear();
+            vector<pair<string, float>> sorted;
+            for (auto &kv : hotels) sorted.push_back({kv.first, kv.second.average_rating});
+            sort(sorted.begin(), sorted.end(), [](auto &a, auto &b){ return a.second < b.second; });
+            for (int i = 0; i < 10 && i < (int)sorted.size(); ++i)
+                searchResults.push_back(sorted[i].first);
+        }
+
+        if (ImGui::Button("Show Example Hotels", ImVec2(180, 28))) {
+            searchResults.clear();
+            vector<string> keys;
+            for (auto &kv : hotels) keys.push_back(kv.first);
+            if (!keys.empty()) {
+                shuffle(keys.begin(), keys.end(), std::default_random_engine((unsigned)time(nullptr)));
+                for (int i = 0; i < 10 && i < (int)keys.size(); ++i)
+                    searchResults.push_back(keys[i]);
+            }
+        }
+
+        ImGui::Spacing();
+        if (!searchResults.empty()) {
+            ImGui::Text("Showing %d hotels", (int)searchResults.size());
+            ImGui::BeginChild("ResultsPanel", ImVec2(0, 360), true);
+
+            for (auto &key : searchResults) {
+                const HotelData& h = hotels[key];
+                ImVec4 sc = scoreColor(h.average_rating);
+                ImVec4 cardBg = darkMode ? ImVec4(0.13f, 0.14f, 0.18f, 1.00f)
+                                         : ImVec4(0.90f, 0.93f, 0.96f, 1.00f);
+                ImVec4 textColor = darkMode ? ImVec4(1.00f, 1.00f, 1.00f, 1.00f)
+                                            : ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+
+                ImGui::PushStyleColor(ImGuiCol_ChildBg, cardBg);
+                ImGui::BeginChild(("card_" + key).c_str(), ImVec2(0, 84), true);
+
+                ImGui::PushStyleColor(ImGuiCol_Text, textColor);
+                ImGui::Text("%s", h.display_name.c_str());
+                ImGui::PopStyleColor();
+
+                ImGui::SameLine(ImGui::GetWindowWidth() - 200);
+                ImGui::TextColored(sc, "%.1f / 10", h.average_rating);
+                ImGui::TextDisabled("Reviews: %d", h.review_count);
+
+                ImGui::EndChild();
+                ImGui::PopStyleColor();
+                ImGui::Spacing();
+            }
+
+            ImGui::EndChild();
+        }
+
+        ImGui::End();
+        ImGui::Render();
+
+        int w, h; glfwGetFramebufferSize(window, &w, &h);
+        glViewport(0, 0, w, h);
+        ImVec4 bg = darkMode ? ImVec4(0.08f, 0.10f, 0.13f, 1.0f) : ImVec4(0.95f, 0.94f, 0.92f, 1.0f);
+        glClearColor(bg.x, bg.y, bg.z, bg.w);
+        glClear(GL_COLOR_BUFFER_BIT);
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        glfwSwapBuffers(window);
+    }
+
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+    glfwDestroyWindow(window);
+    glfwTerminate();
     return 0;
 }
