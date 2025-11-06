@@ -68,7 +68,7 @@ Hotel-Review-Explorer-COP3530-
 ├── imgui/
 ├── glfw/
 ├── main.cpp
-├── Trie.cpp
+├── Trie.h
 ├── HeapSort.cpp
 └── CMakeLists.txt
 ```
@@ -76,9 +76,10 @@ Hotel-Review-Explorer-COP3530-
 ### Step 4: Build & Run
 ```
 1) Open the folder in IDE
-2) Reload CMake Project
-3) Build
-4) Run the whole project (not just main.cpp) and GUI will open
+2) Reload / Configure CMake
+3) If using VSCode: Ctrl+Shift+P → “CMake: Select Kit” → choose a GCC/MinGW-w64 kit
+4) Build the project through CMake (Don't run main.cpp directly)
+5) Run the CMake target / executable (the GUI will open)
 ```
 
 ---
