@@ -32,7 +32,7 @@ We focus on efficient searching and ranking using two data structures:
 ## 🛠️ SETUP
 
 This project uses **Dear ImGui** and **GLFW** for our GUI. 
-Both dependencies are already included locally in the repository so you don't need to install anything.
+Both dependencies are already included locally in the repository so you don't need to install them.
 
 ### Step 1: Clone the project
 Can remove last line once we push to main
@@ -41,7 +41,29 @@ git clone https://github.com/kylwein/Hotel-Review-Explorer-COP3530-.git
 cd Hotel-Review-Explorer-COP3530-
 git checkout Implementing-GUI-+-Tries
 ```
-### Step 2: Verify Folders
+
+### Step 2: Make sure Git LFS is installed (IMPORTANT)
+
+The hotel dataset is stored using Git LFS.  
+If you skip this step, no hotels will load.
+
+Run this once:
+
+(Windows)
+```powershell
+winget install git-lfs
+git lfs install
+git lfs pull
+```
+
+(Mac)
+```
+brew install git-lfs 
+git lfs install
+git lfs pull
+```
+
+### Step 3: Verify Folders
 Make sure your project root has these folders:
 ``` 
 Hotel-Review-Explorer-COP3530-
@@ -51,18 +73,6 @@ Hotel-Review-Explorer-COP3530-
 ├── Trie.cpp
 ├── HeapSort.cpp
 └── CMakeLists.txt
-```
-### Step 3: Dependency Setup (Optional)
-If you are missing dependencies run this in powershell:
-```powershell
-if (!(Test-Path "./imgui")) { git clone https://github.com/ocornut/imgui.git }
-if (!(Test-Path "./glfw")) {
-  $u="https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip"
-  Invoke-WebRequest $u -OutFile "g.zip"
-  Expand-Archive "g.zip" .
-  Rename-Item "glfw-3.4.bin.WIN64" "glfw"
-  Remove-Item "g.zip"
-}
 ```
 
 ### Step 4: Build & Run
