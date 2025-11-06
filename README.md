@@ -78,7 +78,7 @@ Hotel-Review-Explorer-COP3530-
 1) Open the folder in IDE
 2) Reload CMake Project
 3) Build
-4) Run (the GUI will open automatically)
+4) Run the whole project (not just main.cpp) and GUI will open
 ```
 
 ---
