@@ -152,30 +152,6 @@ HeapSort.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.s
 .PHONY : HeapSort.cpp.s
 
-Trie.obj: Trie.cpp.obj
-.PHONY : Trie.obj
-
-# target to build an object file
-Trie.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj
-.PHONY : Trie.cpp.obj
-
-Trie.i: Trie.cpp.i
-.PHONY : Trie.i
-
-# target to preprocess a source file
-Trie.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.i
-.PHONY : Trie.cpp.i
-
-Trie.s: Trie.cpp.s
-.PHONY : Trie.s
-
-# target to generate assembly for a file
-Trie.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\COP3530_Hotel_Reviews_Project.dir\build.make CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.s
-.PHONY : Trie.cpp.s
-
 imgui/backends/imgui_impl_glfw.obj: imgui/backends/imgui_impl_glfw.cpp.obj
 .PHONY : imgui/backends/imgui_impl_glfw.obj
 
@@ -356,9 +332,6 @@ help:
 	@echo ... HeapSort.obj
 	@echo ... HeapSort.i
 	@echo ... HeapSort.s
-	@echo ... Trie.obj
-	@echo ... Trie.i
-	@echo ... Trie.s
 	@echo ... imgui/backends/imgui_impl_glfw.obj
 	@echo ... imgui/backends/imgui_impl_glfw.i
 	@echo ... imgui/backends/imgui_impl_glfw.s

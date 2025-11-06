@@ -14,7 +14,6 @@ link_directories(${CMAKE_SOURCE_DIR}/glfw/lib-mingw-w64)
 
 add_executable(COP3530_Hotel_Reviews_Project
         main.cpp
-        Trie.cpp
         Trie.h
         HeapSort.cpp
         HeapSort.h

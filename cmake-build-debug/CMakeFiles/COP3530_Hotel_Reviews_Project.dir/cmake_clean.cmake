@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj"
   "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/HeapSort.cpp.obj.d"
-  "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj"
-  "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/Trie.cpp.obj.d"
   "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj"
   "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_glfw.cpp.obj.d"
   "CMakeFiles/COP3530_Hotel_Reviews_Project.dir/imgui/backends/imgui_impl_opengl3.cpp.obj"

@@ -1,5 +1,5 @@
 //
-// Created by 19546 on 11/3/2025.
+// Created by 19546 on 11/2/2025.
 //
 
 #ifndef TRIE_H
@@ -10,57 +10,67 @@
 #include <vector>
 using namespace std;
 
-// each node in the trie (letter)
+// each node in the trie = one branch
 struct TrieNode {
-    bool isEnd;  // marks if it’s the end of a word
-    unordered_map<char, TrieNode*> children; // map of next letters
-    TrieNode() : isEnd(false) {}
+    bool isEnd;  // true if the path so far is an actual full word
+    unordered_map<char, TrieNode*> children; // edges to next letters
+
+    TrieNode() : isEnd(false) {} // default
 };
 
 class Trie {
 private:
     TrieNode* root;
 
-    // helper to get all words starting with a prefix
+    // DFS helper: once we find the prefix node, just keep walking
+    // down and collect all possible words.
     void dfs(TrieNode* node, string prefix, vector<string>& results) {
-        if (node->isEnd) results.push_back(prefix); // word complete
-        for (auto& pair : node->children) {
-            dfs(pair.second, prefix + pair.first, results); // go deeper
+        if (node->isEnd) {
+            results.push_back(prefix);
+        }
+
+        // go through every child letter
+        for (auto& nxt : node->children) {
+            dfs(nxt.second, prefix + nxt.first, results);
         }
     }
 
 public:
     Trie() {
-        root = new TrieNode(); // make the root node
+        root = new TrieNode();
     }
 
-    // adds a word into the trie
+    // Insert a full word
     void insert(const string& word) {
-        TrieNode* node = root;
+        TrieNode* cur = root;
+
         for (char c : word) {
-            if (!node->children[c]) { // if that letter not seen yet
-                node->children[c] = new TrieNode();
+            if (!cur->children[c]) {
+                cur->children[c] = new TrieNode();
             }
-            node = node->children[c]; // move to next node
+            cur = cur->children[c];
         }
-        node->isEnd = true; // mark end of word
+
+        cur->isEnd = true; //  reached the end of the word
     }
 
-    // gets list of all words that start with a prefix
-
+    // Return all words starting with a given prefix
     vector<string> autocomplete(const string& prefix) {
-        TrieNode* node = root;
+        TrieNode* cur = root;
+
         for (char c : prefix) {
-            if (!node->children.count(c)) {
-                return {}; // if prefix not found
+            if (!cur->children.count(c)) {
+                return {};
             }
-            node = node->children[c];
+            cur = cur->children[c];
         }
+
+        // reached prefix node
         vector<string> results;
-        dfs(node, prefix, results); // find all completions
+        dfs(cur, prefix, results);
+
         return results;
     }
 };
 
-
-#endif //COP3530_HOTEL_REVIEWS_PROJECT_TRIE_H
+#endif // TRIE_H
