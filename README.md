@@ -6,16 +6,30 @@
 ---
 
 ## 📌 Project Overview
-The **Hotel Review Explorer** predicts and analyzes hotel review scores using textual reviews and metadata.  
-Our model will:
-- Predict the **numerical review score** a user might give, or  
-- Classify reviews as **positive/negative** or **above/below average**  
 
-It will also identify the most influential words, reviewer traits, and hotel attributes that correlate with high or low ratings.
+**Hotel Review Explorer** is an interactive GUI for browsing and comparing hotels using real review data.  
+We focus on efficient searching and ranking using two data structures:
 
+- **Trie** → enables fast hotel name search with autocomplete
+- **Heaps** → used to quickly retrieve top-rated and lowest-rated hotels
+
+
+### What You Can Do in the GUI
+- Search for hotels by name
+- View each hotel's:
+  - **Average Rating**
+  - **Highest Rating** + corresponding review
+  - **Lowest Rating** + corresponding review
+- Browse rankings:
+  - **Top Overall Rated Hotels**
+  - **Top Highest Individual Review Scores**
+  - **Top Lowest Individual Review Scores**
+
+### Goal
+- The purpose is to make hotel review data **easy to explore and compare**, providing a clean UI, quick searching, and interesting rankings.
 ---
 
-## 🛠️ Project Setup
+## 🛠️ SETUP
 
 This project uses **Dear ImGui** and **GLFW** for our GUI. 
 Both dependencies are already included locally in the repository so you don't need to install anything.
@@ -57,27 +71,7 @@ if (!(Test-Path "./glfw")) {
 2) Reload CMake Project
 3) Build
 4) Run (the GUI will open automatically)
-
-
 ```
-
----
-
-
-## 💡 Motivation
-Accurate review prediction gives hotels insight before feedback is even submitted.  
-Platforms like **Airbnb** and **Vrbo** have changed the landscape — hotels need to adapt to shifting customer sentiment and competition.  
-Our system helps them pinpoint what drives satisfaction and where to improve.
-
----
-
-## 🎯 Success Criteria
-We’ll consider the project successful when:
-
-- **Regression Goal:** Low *Mean Absolute Error (MAE)* and *Root Mean Squared Error (RMSE)* compared to a baseline model.  
-- **Classification Goal:** At least **80% accuracy** for positive vs. negative review prediction.  
-- **Performance Goal:** Efficient ranking and visualization using Tries and Heaps.  
-- **Interpretability Goal:** Clear identification of top predictive words and metadata features.
 
 ---
 
@@ -101,29 +95,17 @@ We’ll consider the project successful when:
 
 ## 🧰 Tools & Frameworks
 - **C++** – Core logic, data structures, GUI  
-- **Python (optional)** – Data cleaning and visualization  
 - **GitHub** – Version control and collaboration  
 
 ---
 
-## 🧩 Planned Visuals
-**Interface Features:**
-- **Search Bar (Trie-based):** Autocomplete for hotel names and keywords  
-- **Ranking Panel (Heap-based):**
-  - Top 10 highest-rated hotels  
-  - Top 10 most-reviewed hotels  
-  - Top 10 positive/negative mentions  
-- **Optional:** Map view with hotel locations using lat/lng data  
-
----
-
-## ⚙️ Implementation Strategy
+## ⚙️ Implementation
 **Data Structures**
 - **Trie:**  
   - Stores hotel names, tags, and keywords  
   - Enables fast prefix-based autocomplete — O(n) time, where *n* = string length  
 - **Heap (Min/Max):**  
-  - Ranks hotels by score or number of reviews  
+  - Ranks hotels by ratings
   - Maintains top-N efficiently in O(log n) time  
 
 **Workflow**
